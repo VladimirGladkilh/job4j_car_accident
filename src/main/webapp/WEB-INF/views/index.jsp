@@ -30,7 +30,7 @@
 </table>
 
 А вот данные из "БД"
-
+<a href="<c:url value='/create'/>">Добавить инцидент</a>
 <table id="accidentTable" class="table table-bordered">
     <thead>
     <tr>
