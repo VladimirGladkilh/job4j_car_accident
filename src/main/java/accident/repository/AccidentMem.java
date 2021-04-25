@@ -4,17 +4,14 @@ import accident.model.Accident;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class AccidentMem implements Store {
-    private HashMap<Integer, Accident> accidents = new HashMap<>();
+    private final Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
 
     public AccidentMem() {
-        init();
-    }
-
-    private void init() {
         accidents.put(1, new Accident(1, "First", "Subject 1", "Street 1"));
         accidents.put(2, new Accident(2, "Second", "Subject 2", "Street 2"));
         accidents.put(3, new Accident(3, "Third", "Subject 3", "Street 3"));
