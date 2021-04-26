@@ -21,6 +21,7 @@
         <th scope="col">Имя</th>
         <th scope="col">Содержание</th>
         <th scope="col">Адрес</th>
+        <th scope="col">Тип</th>
     </tr>
     </thead>
     <tbody>
@@ -32,6 +33,7 @@
                 <td><a href="<c:url value="/edit?id=${accident.id}"/>">${accident.name}</a></td>
                 <td>${accident.text}</td>
                 <td>${accident.address}</td>
+                <td>${accident.type.name}</td>
             </tr>
 
     </c:forEach>

@@ -1,6 +1,7 @@
 package accident.service;
 
 import accident.model.Accident;
+import accident.model.AccidentType;
 import accident.repository.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,10 @@ public class AccidentService implements ServiceInterface {
     @Override
     public Collection<Accident> getAll() {
         return store.findAll();
+    }
+
+    @Override
+    public Collection<AccidentType> getAllTypes() {
+        return store.findAllTypes();
     }
 }

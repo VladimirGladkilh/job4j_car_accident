@@ -20,12 +20,14 @@ public class AccidentControl {
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("types", accidents.findAllTypes());
         return "accident/create";
     }
 
     @GetMapping("/edit")
     public String edit(@RequestParam("id") int id, Model model) {
+        model.addAttribute("types", accidents.findAllTypes());
         model.addAttribute("accident", accidents.findById(id));
         return "accident/edit";
     }
