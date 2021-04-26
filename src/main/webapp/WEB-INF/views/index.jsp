@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 </head>
 <body>
 <a href="<c:url value='/create'/>">Добавить инцидент</a>
@@ -24,13 +25,15 @@
     </thead>
     <tbody>
     <c:forEach items="${accidents}" var="accident" varStatus="listIndex">
-        <tr>
-            <td>${listIndex.index + 1}</td>
-            <td>${accident.id}</td>
-            <td>${accident.name}</td>
-            <td>${accident.text}</td>
-            <td>${accident.address}</td>
-        </tr>
+
+            <tr>
+                <td>${listIndex.index + 1}</td>
+                <td>${accident.id}</td>
+                <td><a href="<c:url value="/edit?id=${accident.id}"/>">${accident.name}</a></td>
+                <td>${accident.text}</td>
+                <td>${accident.address}</td>
+            </tr>
+
     </c:forEach>
     </tbody>
 </table>
