@@ -18,7 +18,7 @@
         <tr>
             <td>Тип:</td>
             <td>
-                <select name="type.id">
+                <select name="type_id">
                     <c:forEach var="type" items="${types}">
                         <option name="type.name" value="${type.id}"><c:out value="${type.name}"/></option>
                     </c:forEach>

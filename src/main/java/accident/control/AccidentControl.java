@@ -41,11 +41,17 @@ public class AccidentControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
+        String[] type_id = req.getParameterValues("type_id");
+        if (type_id != null && type_id.length > 0) {
+            accident.setType(accidents.findTypeById(Integer.parseInt(type_id[0])));
+        }
         String[] ids = req.getParameterValues("rIds");
-        accident.setRules(accidents.findAllRules().stream()
-                .filter(rule -> Arrays.stream(ids)
-                        .anyMatch(s -> s.equalsIgnoreCase(String.valueOf(rule.getId()))))
-                .collect(Collectors.toSet()));
+        if (ids != null && ids.length > 0) {
+            accident.setRules(accidents.findAllRules().stream()
+                    .filter(rule -> Arrays.stream(ids)
+                            .anyMatch(s -> s.equalsIgnoreCase(String.valueOf(rule.getId()))))
+                    .collect(Collectors.toSet()));
+        }
         accidents.save(accident);
         return "redirect:/";
     }
