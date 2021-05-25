@@ -35,12 +35,19 @@ public class AccidentJdbcTemplate implements Store {
 
     @Override
     public Accident findById(int id) {
-        return null;
+
+        return jdbc.query("select e from accident e where id=" + id, rs -> {
+            Accident accident = new Accident();
+            accident.setId(rs.getInt("id"));
+            accident.setName(rs.getString("name"));
+            return accident;
+        })
+                ;
     }
 
     @Override
     public void delete(Accident accident) {
-
+        jdbc.execute("delete from accident where id=" + accident.getId());
     }
 
     @Override
