@@ -36,6 +36,7 @@ public class AccidentControl {
         model.addAttribute("types", accidents.findAllTypes());
         model.addAttribute("accident", accidents.findById(id));
         model.addAttribute("rules", accidents.findAllRules());
+        model.addAttribute("selRules", accidents.findRulesByAccidientId(id));
         return "accident/edit";
     }
 

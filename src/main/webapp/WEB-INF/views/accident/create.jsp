@@ -16,6 +16,14 @@
             <td><input type='text' name='name'></td>
         </tr>
         <tr>
+            <td>Содержание:</td>
+            <td><input type='text' name='text' value="${accident.text}"></td>
+        </tr>
+        <tr>
+            <td>Адрес:</td>
+            <td><input type='text' name='address' value="${accident.address}"></td>
+        </tr>
+        <tr>
             <td>Тип:</td>
             <td>
                 <select name="type_id">

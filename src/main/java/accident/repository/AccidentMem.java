@@ -71,4 +71,13 @@ public class AccidentMem implements Store {
         return rules.values();
     }
 
+    @Override
+    public Collection<Rule> findRulesByAccidientId(int id) {
+        Accident accident = findById(id);
+        if (accident == null || accident.getRules() == null || accident.getRules().isEmpty()) {
+            return Collections.emptyList();
+        }
+        return accident.getRules();
+    }
+
 }

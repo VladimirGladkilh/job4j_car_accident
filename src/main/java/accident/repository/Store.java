@@ -23,4 +23,5 @@ public interface Store {
 
     Collection<Rule> findAllRules();
 
+    Collection<Rule> findRulesByAccidientId(int id);
 }

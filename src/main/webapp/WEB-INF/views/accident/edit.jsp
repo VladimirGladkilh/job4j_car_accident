@@ -39,7 +39,7 @@
             <td>
                 <select name="rIds" multiple>
                     <c:forEach var="rule" items="${rules}">
-                        <option value="${rule.id}">${rule.name}</option>
+                        <option value="${rule.id}" ${accident.rules.contains(rule) ? 'selected' : ''}>${rule.name}</option>
                     </c:forEach>
                 </select>
         </tr>
