@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <body>
 <form action="<c:url value='/save?id=${accident.id}'/>" method='POST'>
@@ -28,14 +29,17 @@
             <td>
                 <select name="type.id">
                     <c:forEach var="type" items="${types}">
-                        <c:choose>
-                            <c:when test="${type.id==accident.type.id}">
-                                <option name="type.name" value="${type.id}" selected>${type.name}</option>
-                            </c:when>
-                            <c:otherwise>
-                                <option name="type.name" value="${type.id}">${type.name}</option>
-                            </c:otherwise>
-                        </c:choose>
+                        <option name="type.name" value="${type.id}" ${type.id==accident.type.id ? 'selected' : ''}>
+                            <c:out value="${type.name}"/></option>
+                    </c:forEach>
+                </select>
+        </tr>
+        <tr>
+            <td>Статьи:</td>
+            <td>
+                <select name="rIds" multiple>
+                    <c:forEach var="rule" items="${rules}">
+                        <option value="${rule.id}">${rule.name}</option>
                     </c:forEach>
                 </select>
         </tr>
