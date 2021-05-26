@@ -48,9 +48,8 @@ public class AccidentControl {
         }
         String[] ids = req.getParameterValues("rIds");
         if (ids != null && ids.length > 0) {
-            accident.setRules(accidents.findAllRules().stream()
-                    .filter(rule -> Arrays.stream(ids)
-                            .anyMatch(s -> s.equalsIgnoreCase(String.valueOf(rule.getId()))))
+            accident.setRules(Arrays.stream(ids)
+                    .map(s -> accidents.findRuleById(Integer.parseInt(s)))
                     .collect(Collectors.toSet()));
         }
         accidents.save(accident);
