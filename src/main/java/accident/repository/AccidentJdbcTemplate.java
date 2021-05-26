@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 
 @Repository
-public class AccidentJdbcTemplate implements Store {
+public class AccidentJdbcTemplate {
     private final JdbcTemplate jdbc;
 
     public AccidentJdbcTemplate(JdbcTemplate jdbc) {
@@ -17,7 +17,6 @@ public class AccidentJdbcTemplate implements Store {
     }
 
 
-    @Override
     public Collection<Accident> findAll() {
         return jdbc.query("select id, name from accident",
                 (rs, row) -> {
@@ -28,49 +27,80 @@ public class AccidentJdbcTemplate implements Store {
                 });
     }
 
-    @Override
     public void save(Accident accident) {
-
+        if (accident.getId() == 0) {
+            jdbc.update("insert into accident (name, text, address, type_id) values (?, ?, ?,?)",
+                    accident.getName(),
+                    accident.getText(),
+                    accident.getAddress(),
+                    accident.getType() != null ? accident.getType().getId() : 0);
+        } else {
+            jdbc.update("update accident set name = ?, text =? , address=?, type_id=?",
+                    accident.getName(),
+                    accident.getText(),
+                    accident.getAddress(),
+                    accident.getType() != null ? accident.getType().getId() : 0);
+        }
     }
 
-    @Override
     public Accident findById(int id) {
-
-        return jdbc.query("select e from accident e where id=" + id, rs -> {
-            Accident accident = new Accident();
-            accident.setId(rs.getInt("id"));
-            accident.setName(rs.getString("name"));
-            return accident;
-        })
-                ;
+        return jdbc.query("select * from accident e where id=?",
+                rs -> {
+                    Accident accident = new Accident();
+                    accident.setId(rs.getInt("id"));
+                    accident.setName(rs.getString("name"));
+                    return accident;
+                },
+                id);
     }
 
-    @Override
     public void delete(Accident accident) {
-        jdbc.execute("delete from accident where id=" + accident.getId());
+        jdbc.update("delete from accident where id=?",
+                accident.getId());
     }
 
-    @Override
     public AccidentType findTypeById(int id) {
-        return null;
+        return jdbc.query("select * from accident_type e where id=?",
+                rs -> {
+                    AccidentType accidentType = new AccidentType();
+                    accidentType.setId(rs.getInt("id"));
+                    accidentType.setName(rs.getString("name"));
+                    return accidentType;
+                },
+                id);
     }
 
-    @Override
     public Collection<AccidentType> findAllTypes() {
-        return null;
+        return jdbc.query("select id, name from accident_type",
+                (rs, row) -> {
+                    AccidentType accidentType = new AccidentType();
+                    accidentType.setId(rs.getInt("id"));
+                    accidentType.setName(rs.getString("name"));
+                    return accidentType;
+                });
     }
 
-    @Override
     public Rule findRuleById(int id) {
-        return null;
+        return jdbc.query("select * from rule e where id=?",
+                rs -> {
+                    Rule rule = new Rule();
+                    rule.setId(rs.getInt("id"));
+                    rule.setName(rs.getString("name"));
+                    return rule;
+                },
+                id);
     }
 
-    @Override
     public Collection<Rule> findAllRules() {
-        return null;
+        return jdbc.query("select id, name from rule",
+                (rs, row) -> {
+                    Rule rule = new Rule();
+                    rule.setId(rs.getInt("id"));
+                    rule.setName(rs.getString("name"));
+                    return rule;
+                });
     }
 
-    @Override
     public Collection<Rule> findRulesByAccidientId(int id) {
         return null;
     }

@@ -6,3 +6,15 @@ CREATE TABLE accident
     address varchar(2000),
     type_id int
 );
+
+CREATE TABLE rule
+(
+    id   serial primary key,
+    name varchar(2000)
+);
+
+CREATE TABLE accident_type
+(
+    id   serial primary key,
+    name varchar(2000)
+);
