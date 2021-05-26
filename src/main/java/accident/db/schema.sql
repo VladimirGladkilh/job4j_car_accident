@@ -18,3 +18,9 @@ CREATE TABLE accident_type
     id   serial primary key,
     name varchar(2000)
 );
+
+CREATE TABLE accident_rules
+(
+    acciden_id int,
+    rule_id    int
+);
