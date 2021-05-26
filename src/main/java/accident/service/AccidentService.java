@@ -2,7 +2,7 @@ package accident.service;
 
 import accident.model.Accident;
 import accident.model.AccidentType;
-import accident.repository.AccidentJdbcTemplate;
+import accident.repository.AccidentHibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,10 @@ import java.util.Collection;
 
 @Service
 public class AccidentService implements ServiceInterface {
-    private final AccidentJdbcTemplate store;
+    private final AccidentHibernate store;
 
     @Autowired
-    public AccidentService(AccidentJdbcTemplate store) {
+    public AccidentService(AccidentHibernate store) {
         this.store = store;
     }
 

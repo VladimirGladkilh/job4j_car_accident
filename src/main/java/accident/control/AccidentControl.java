@@ -1,7 +1,7 @@
 package accident.control;
 
 import accident.model.Accident;
-import accident.repository.AccidentJdbcTemplate;
+import accident.repository.AccidentHibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 
 @Controller
 public class AccidentControl {
-    private final AccidentJdbcTemplate accidents;
+    private final AccidentHibernate accidents;
 
     @Autowired
-    public AccidentControl(AccidentJdbcTemplate accidents) {
+    public AccidentControl(AccidentHibernate accidents) {
         this.accidents = accidents;
     }
 
