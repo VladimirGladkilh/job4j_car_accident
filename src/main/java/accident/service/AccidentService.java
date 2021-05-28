@@ -2,7 +2,8 @@ package accident.service;
 
 import accident.model.Accident;
 import accident.model.AccidentType;
-import accident.repository.AccidentHibernate;
+import accident.repository.AccidentRepository;
+import accident.repository.AccidentTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,25 +11,27 @@ import java.util.Collection;
 
 @Service
 public class AccidentService implements ServiceInterface {
-    private final AccidentHibernate store;
+    private final AccidentRepository accidentRepository;
+    private final AccidentTypeRepository accidentTypeRepository;
 
     @Autowired
-    public AccidentService(AccidentHibernate store) {
-        this.store = store;
+    public AccidentService(AccidentRepository store, AccidentTypeRepository accidentTypeRepository) {
+        this.accidentRepository = store;
+        this.accidentTypeRepository = accidentTypeRepository;
     }
 
     @Override
     public void add(Accident accident) {
-        store.save(accident);
+        accidentRepository.save(accident);
     }
 
     @Override
     public Collection<Accident> getAll() {
-        return store.findAll();
+        return (Collection<Accident>) accidentRepository.findAll();
     }
 
     @Override
     public Collection<AccidentType> getAllTypes() {
-        return store.findAllTypes();
+        return (Collection<AccidentType>) accidentTypeRepository.findAll();
     }
 }
