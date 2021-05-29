@@ -27,7 +27,7 @@ public class AccidentService implements ServiceInterface {
 
     @Override
     public Collection<Accident> getAll() {
-        return (Collection<Accident>) accidentRepository.findAll();
+        return (Collection<Accident>) accidentRepository.findAllWithType();
     }
 
     @Override
