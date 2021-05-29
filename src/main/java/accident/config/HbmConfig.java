@@ -40,6 +40,8 @@ public class HbmConfig {
         Properties cfg = new Properties();
         cfg.setProperty("hibernate.dialect", dialect);
         cfg.setProperty("hibernate.hbm2ddl.auto", "update");
+        cfg.setProperty("hibernate.enable_lazy_load_no_trans", "true");
+        cfg.setProperty("hibernate.current_session_context_class", "thread");
         sessionFactory.setHibernateProperties(cfg);
         return sessionFactory;
     }

@@ -46,7 +46,7 @@ public class AccidentHibernate {
     public Collection<Accident> findAll() {
         try (Session session = sf.openSession()) {
             return session
-                    .createQuery("from Accident", Accident.class)
+                    .createQuery("from Accident fetch all properties", Accident.class)
                     .list();
         }
     }
