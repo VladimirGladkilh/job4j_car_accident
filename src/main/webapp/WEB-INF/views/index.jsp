@@ -12,7 +12,11 @@
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 </head>
 <body>
+<div>
+    Login as : ${user.username}
+</div>
 <a href="<c:url value='/create'/>">Добавить инцидент</a>
+
 <table id="accidentTable" class="table table-bordered">
     <thead>
     <tr>
